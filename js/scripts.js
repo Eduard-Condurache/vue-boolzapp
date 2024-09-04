@@ -166,13 +166,44 @@ createApp({
                   ],
               }
           ],
-          activeChat: 0 
+          activeChat: 0,
+          newChatBox: '',
+          computerChatBox: 'OK!'
   
     };
   },
   methods: {
     setActiveChat(newIndex) {
       this.activeChat = newIndex;
+    },
+
+    interactiveChatBox() {
+        if (this.addChatBox() == true) {
+            this.addComputerChatBox();
+        }
+    },
+    addChatBox() {
+        if (this.newChatBox.trim() != '') {
+            this.contacts[this.activeChat].messages.push({
+                date: '09/04/2024',
+                message: this.newChatBox,
+                status: 'sent'
+            })
+
+            this.newChatBox = '';
+            return true;
+        }
+        return false;
+    },
+    addComputerChatBox() {
+        setTimeout(() => {
+            this.contacts[this.activeChat].messages.push({
+                date: '09/04/2024',
+                message: this.computerChatBox,
+                status: 'received'
+            })
+        }, 2500)
     }
+    
   }
 }).mount('#app')

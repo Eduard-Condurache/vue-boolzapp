@@ -150,18 +150,18 @@
 
                         <!-- MAIN SECTION CHAT CONTAINER -->
                         <div class="chat-container">
-                            <div v-for="(message, index) in contacts[activeChat].messages">
-                                <div v-if="message.status == 'sent'" class="message-container sent">
+                            <div v-for="(element, index) in contacts[activeChat].messages">
+                                <div v-if="element.status == 'sent'" class="message-container sent">
                                     <div class="message-style sent">
-                                        <p>{{ message.message }}</p>
-                                        <span>{{ message.date }}</span>
+                                        <p>{{ element.message }}</p>
+                                        <span>{{ element.date }}</span>
                                     </div>
                                 </div>
                                 
-                                <div v-else="message === 'received'" class="message-container received">
+                                <div v-else="element.status == 'received'" class="message-container received">
                                     <div class="message-style received">
-                                        <p>{{ message.message }}</p>
-                                        <span>{{ message.date }}</span>
+                                        <p>{{ element.message }}</p>
+                                        <span>{{ element.date }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +173,13 @@
                             <form class="w-100">
                                 <div id="message-input">
                                     <i class="fa-regular fa-face-smile"></i>
-                                    <input class="search-input" type="text" placeholder="Cerca o inizia una nuova chat">
+                                    <input 
+                                        @keydown.enter.prevent="interactiveChatBox()"
+                                        v-model="newChatBox" 
+                                        class="search-input" 
+                                        type="text" 
+                                        placeholder="Cerca o inizia una nuova chat">
+                                        
                                     <i class="fa-solid fa-microphone"></i>
                                 </div>
                             </form>
