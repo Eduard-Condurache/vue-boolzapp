@@ -240,7 +240,10 @@ createApp({
                 contact.visible = false;
             }
         }
-    }
+    },
+    removeMex(buttonIndex) {
+        this.contacts[this.activeChat].messages.splice(buttonIndex, 1);
+      },
   }
 }).mount('#app')
 

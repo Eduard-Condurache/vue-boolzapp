@@ -209,12 +209,54 @@ section .message-style {
     position: relative;
 }
 
+section .message-style .dropdown {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+}
+
+section .message-style .dropdown button{
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+section .message-style .message-content {
+    padding-right: 30px; 
+}
+
+section .message-style::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -12px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg,#D5F9BA 0%, #D5F9BA 50%, transparent 50%, transparent)
+}
+
 section .message-style.sent {
     background-color: #D5F9BA;
 }
 
 section .message-style.received {
     background-color: #FFFFFF;
+}
+
+section .message-style.message-style.received::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -12px;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(225deg,#FFFFFF 0%, #FFFFFF 50%, transparent 50%, transparent)
 }
 
 section .message-style p {

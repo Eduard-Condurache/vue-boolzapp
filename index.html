@@ -161,13 +161,67 @@
                             <div v-for="(element, index) in contacts[activeChat].messages">
                                 <div v-if="element.status == 'sent'" class="message-container sent">
                                     <div class="message-style sent">
+                                        <div class="dropdown">
+                                            <button 
+                                                class="dropdown-btn" 
+                                                type="button" 
+                                                data-bs-toggle="dropdown" 
+                                                aria-expanded="false">
+                                                <i class="fas fa-angle-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <button 
+                                                        class="dropdown-item" 
+                                                        type="button">
+                                                        Message info
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button 
+                                                        class="dropdown-item" 
+                                                        type="button"
+                                                        @click="removeMex(index)">
+                                                        Delete message
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+
                                         <p>{{ element.message }}</p>
+
                                         <span>{{ element.date }}</span>
                                     </div>
                                 </div>
                                 
                                 <div v-else="element.status == 'received'" class="message-container received">
                                     <div class="message-style received">
+                                        <div class="dropdown">
+                                            <button 
+                                                class="dropdown-btn" 
+                                                type="button" 
+                                                data-bs-toggle="dropdown" 
+                                                aria-expanded="false">
+                                                <i class="fas fa-angle-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <button 
+                                                        class="dropdown-item" 
+                                                        type="button">
+                                                        Message info
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button 
+                                                        class="dropdown-item" 
+                                                        type="button"
+                                                        @click="removeMex(index)">
+                                                        Delete message
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
                                         <p>{{ element.message }}</p>
                                         <span>{{ element.date }}</span>
                                     </div>
