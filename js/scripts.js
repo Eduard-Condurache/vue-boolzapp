@@ -168,8 +168,8 @@ createApp({
           ],
           activeChat: 0,
           newChatBox: '',
-          computerChatBox: 'OK!'
-  
+          computerChatBox: 'OK!',
+          searchValue: '',
     };
   },
   methods: {
@@ -182,10 +182,31 @@ createApp({
             this.addComputerChatBox();
         }
     },
+
+    getfullDate() {
+        const now = new Date();
+        let fullDate = '';
+    
+        fullDate += now.getDate().toString().padStart(2, '0');
+        fullDate += '/';
+        fullDate += (now.getMonth() + 1).toString().padStart(2, '0'); 
+        fullDate += '/';
+        fullDate += now.getFullYear();
+        fullDate += ' ';
+        fullDate += now.getHours().toString().padStart(2, '0');
+        fullDate += ':';
+        fullDate += now.getMinutes().toString().padStart(2, '0');
+        fullDate += ':';
+        fullDate += now.getSeconds().toString().padStart(2, '0');
+    
+        return fullDate;
+    },
+
     addChatBox() {
         if (this.newChatBox.trim() != '') {
+
             this.contacts[this.activeChat].messages.push({
-                date: '09/04/2024',
+                date: this.getfullDate(),
                 message: this.newChatBox,
                 status: 'sent'
             })
@@ -198,12 +219,30 @@ createApp({
     addComputerChatBox() {
         setTimeout(() => {
             this.contacts[this.activeChat].messages.push({
-                date: '09/04/2024',
+                date: this.getfullDate(),
                 message: this.computerChatBox,
                 status: 'received'
             })
         }, 2500)
+    },
+    checkContactList() {
+        const searchValue = this.searchValue.toLowerCase();
+
+        for (let i = 0; i < this.contacts.length; i++) {
+            const contact = this.contacts[i];
+            
+            const contactName = contact.name.toLowerCase();
+
+            if (contactName.includes(searchValue)) {
+                contact.visible = true;
+            }
+            else {
+                contact.visible = false;
+            }
+        }
     }
-    
   }
 }).mount('#app')
+
+
+ 

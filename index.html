@@ -70,47 +70,55 @@
                                 <div>
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </div>
-                                <input class="search-input" type="search" placeholder="Cerca o inizia una nuova chat">
+                                <input 
+                                class="search-input" 
+                                type="text" 
+                                placeholder="Cerca o inizia una nuova chat"
+                                v-model="searchValue"
+                                @input="checkContactList()">
                             </form>
                         </div>
                         <!-- /SEARCH SECTION -->
 
                         <!-- ASIDE MAIN USERS -->
                         <div class="aside-users-container">
-                            <div 
-                                v-for="(contact, index) in contacts" 
-                                class="contact-info"
-                                :class="{ active: activeChat === index }"
-                                @click="setActiveChat(index)">
-                                <ul>
-                                    <li>
-                                        <div class="row d-flex justify-content-spacebetween px-3 py-2 list-container">
-                                            <div class="col-2">
-                                                <div class="circle-container">
-                                                    <img :src="contact.avatar" :alt="contact.name">
+                            <template v-for="(contact, index) in contacts">
+                                <div 
+                                    v-if="contact.visible"
+                                    class="contact-info"
+                                    :class="{ active: activeChat === index }"
+                                    @click="setActiveChat(index)">
+                                    <ul>
+                                        <li>
+                                            <div class="row d-flex justify-content-spacebetween px-3 py-2 list-container">
+                                                <div class="col-2">
+                                                    <div class="circle-container">
+                                                        <img :src="contact.avatar" :alt="contact.name">
+                                                    </div>
+                
                                                 </div>
-            
+                
+                                                <div class="col-8 contact-desc">
+                                                    <p class="p-0 m-0 fw-bold">
+                                                        {{ contact.name }}
+                                                    </p>
+                                                    <span class="p-0 m-0">
+                                                        Ultimo messaggio inviato
+                                                    </span>
+                                                </div>
+                
+                                                <div class="col-2">
+                                                    <p class="user-hour">
+                                                        12.00
+                                                    </p>
+                                                </div>
                                             </div>
-            
-                                            <div class="col-8 contact-desc">
-                                                <p class="p-0 m-0 fw-bold">
-                                                    {{ contact.name }}
-                                                </p>
-                                                <span class="p-0 m-0">
-                                                    Ultimo messaggio inviato
-                                                </span>
-                                            </div>
-            
-                                            <div class="col-2">
-                                                <p class="user-hour">
-                                                    12.00
-                                                </p>
-                                            </div>
-                                        </div>
-            
-                                    </li> 
-                                </ul> 
-                            </div>
+                
+                                        </li> 
+                                    </ul> 
+                                </div>
+                            </template>
+                          
                         </div>
                         <!-- /ASIDE MAIN USERS -->
                         
